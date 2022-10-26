@@ -11,10 +11,13 @@ import javafx.stage.Stage;
 
 public class ResizableCanvasApp extends Application {
 
+    private Stage primaryStage;
+
     private ResizableCanvas canvas;
 
     @Override
     public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
 
         Parent root = createContent();
 
@@ -32,9 +35,6 @@ public class ResizableCanvasApp extends Application {
         canvas.widthProperty().addListener(observable -> canvasRender());
         canvas.heightProperty().addListener(observable -> canvasRender());
         root.setCenter(canvas);
-
-        // Render initial content for canvas
-        canvasRender();
 
         return root;
     }
@@ -59,6 +59,17 @@ public class ResizableCanvasApp extends Application {
         gc.setFill(Color.BLACK);
         gc.setTextAlign(TextAlignment.CENTER);
         gc.fillText("Canvas size: " + canvas.getWidth() + "x" + canvas.getHeight(), canvas.getWidth() / 2, 20);
+
+        // Parent
+        BorderPane pane = (BorderPane) canvas.getParent();
+        gc.fillText("Parent size: " + pane.getWidth() + "x" + pane.getHeight() + " (Border: 5 on each side)", canvas.getWidth() / 2, 40);
+
+        // Scene
+        Scene scene = canvas.getScene();
+        gc.fillText("Scene size: " + scene.getWidth() + "x" + scene.getHeight(), canvas.getWidth() / 2, 60);
+
+        // Stage (will be valid after resize)
+        gc.fillText("Stage size: " + primaryStage.getWidth() + "x" + primaryStage.getHeight(), canvas.getWidth() / 2, 80);
     }
 
     public static void main(String[] args) {
