@@ -18,7 +18,7 @@ public class ResizableCanvasApp extends Application {
 
         Parent root = createContent();
 
-        primaryStage.setTitle("FX-Showcase Screens");
+        primaryStage.setTitle("FX-Showcase ResizableCanvas");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.centerOnScreen();
         primaryStage.show();

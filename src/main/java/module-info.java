@@ -1,3 +1,3 @@
-open module fx.showcase.screens {
+open module fx.showcase.resizablecanvas {
     requires javafx.controls;
 }
